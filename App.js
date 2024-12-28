@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider as PaperProvider } from 'react-native-paper';
+import BerandaScreen from './src/components/BerandaScreen';
+import PesanScreen from './src/components/PesanScreen';
+import KonfirmasiScreen from './src/components/KonfirmasiScreen';
+
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Beranda">
+          <Stack.Screen name="Beranda" component={BerandaScreen} options={{ title: 'Pemesanan Travel' }} />
+          <Stack.Screen name="Pesan" component={PesanScreen} options={{ title: 'Pesan Travel' }} />
+          <Stack.Screen name="Konfirmasi" component={KonfirmasiScreen} options={{ title: 'Konfirmasi' }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
